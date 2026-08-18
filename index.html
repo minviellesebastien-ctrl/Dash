@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Carnet de Bord - Hub</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#121212">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            /* Glassmorphism effect colors */
+            --card-bg: rgba(30, 30, 30, 0.4); 
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-blur: blur(20px);
+
+            /* Text colors from image */
+            --text-main: #ffffff;
+            --text-sub: #b0b0b0; /* Grey text */
+            --text-highlight: #ffffff; /* White highlighted data */
+            --text-btn: #ffffff;
+            
+            /* Accent colors from icons */
+            --accent-finance: #ff6b00; /* Orange */
+            --accent-agenda: #1e88e5; /* Blue */
+            --accent-collection: #ffb300; /* Yellow */
+            --accent-exploration: #00897b; /* Teal */
+            
+            --fab-color: #ff6b00; /* Orange action button */
+            --btn-bg: rgba(255, 255, 255, 0.05); /* Very subtle button bg */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Prevent body scroll, use container scroll */
+            padding: 20px;
+        }
+
+        /* The physical phone frame */
+        .phone-container {
+            width: 360px; /* Approximate width of a modern phone in a hand */
+            height: 740px; /* Approximate height */
+            background: #000; /* Phone frame color */
+            border-radius: 36px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            overflow: hidden;
+            position: relative;
+            border: 12px solid #1a1a1a; /* Bezel */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* The simulated phone notch/dynamic island */
+        .phone-notch {
+            width: 120px;
+            height: 28px;
+            background: #000;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            z-index: 10;
+        }
+
+        /* Scene background: Stone wall texture */
+        .scene-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('bg-texture.jpg'); /* YOU NEED THIS IMAGE */
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.3); /* Darken the background significantly */
+            z-index: -2;
+        }
+
+        /* The light pedestal and glow effect beneath the phone */
+        .light-pedestal {
+            position: fixed;
+            bottom: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 230, 180, 0.15) 0%, rgba(255, 230, 180, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(50px);
+        }
+
+        /* App Screen content wrapper (inside the phone bezel) */
+        .app-screen {
+            flex: 1;
+            background-color: transparent; /* Show phone content/blur */
+            overflow-y: auto; /* Scrollable content */
+            padding: 20px;
+            padding-top: 40px; /* Notch spacing */
+            padding-bottom: 90px; /* FAB spacing */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Make scrollbar invisible but functional */
+        .app-screen::-webkit-scrollbar { display: none; }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .profile-btn {
+            background: var(--btn-bg);
+            color: var(--text-sub);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .profile-btn:hover { background: rgba(255,255,255,0.1); color: var(--text-main); }
+
+        /* DASHBOARD GRID */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* CARD STYLES (Glassmorphism) */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: var(--card-blur);
+            -webkit-backdrop-filter: var(--card-blur);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid var(--card-border);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            border-color: rgba(255,255,255,0.15);
+        }
+        .card:active { transform: scale(0.97); }
+
+        /* Card Header (Icon and Title) */
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        /* Circular Icon Wrapper with background glow */
+        .icon-wrapper {
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid;
+        }
+
+        /* SVG Icon styling */
+        .icon-wrapper svg {
+            width: 24px; height: 24px;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Color Themes per Section */
+        /* FINANCE */
+        .card.finance .icon-wrapper { 
+            background: rgba(255, 107, 0, 0.15); 
+            border-color: rgba(255, 107, 0, 0.3);
+        }
+        .card.finance svg { stroke: var(--accent-finance); }
+        .card.finance .card-title { color: var(--accent-finance); }
+        .card.finance .stat-highlight { color: #4caf50; font-weight: 600;} /* Green profit */
+
+        /* AGENDA */
+        .card.agenda .icon-wrapper { 
+            background: rgba(30, 136, 229, 0.15); 
+            border-color: rgba(30, 136, 229, 0.3);
+        }
+        .card.agenda svg { stroke: var(--accent-agenda); }
+        .card.agenda .card-title { color: var(--accent-agenda); }
+        .card.agenda .stat-highlight { color: #fff; font-weight: 600;}
+
+        /* COLLECTION */
+        .card.collection .icon-wrapper { 
+            background: rgba(255, 179, 0, 0.15); 
+            border-color: rgba(255, 179, 0, 0.3);
+        }
+        .card.collection svg { stroke: var(--accent-collection); }
+        .card.collection .card-title { color: var(--accent-collection); }
+        .card.collection .stat-highlight { color: #fff; font-weight: 600;}
+
+        /* EXPLORATION */
+        .card.exploration .icon-wrapper { 
+            background: rgba(0, 137, 123, 0.15); 
+            border-color: rgba(0, 137, 123, 0.3);
+        }
+        .card.exploration svg { stroke: var(--accent-exploration); }
+        .card.exploration .card-title { color: var(--accent-exploration); }
+        .card.exploration .stat-highlight { color: #fff; font-weight: 600;}
+
+        /* Title style */
+        .card-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        /* Body Data */
+        .card-body {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            line-height: 1.4;
+        }
+
+        /* Highlighted Data (White) */
+        .highlight { color: var(--text-highlight); font-weight: 600; }
+
+        /* Action Buttons on cards */
+        .card-btn {
+            margin-top: 10px;
+            background: var(--btn-bg);
+            color: var(--text-btn);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .card-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15);}
+
+        /* FLOATING ACTION BUTTON (FAB) */
+        .fab {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--fab-color);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            font-size: 2rem;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.5);
+            cursor: pointer;
+            z-index: 5;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .fab:hover {
+            transform: translateX(-50%) translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.6);
+        }
+        .fab:active { transform: translateX(-50%) scale(0.95); }
+
+    </style>
+</head>
+<body>
+
+    <!-- Scene Background and Light -->
+    <div class="scene-bg"></div>
+    <div class="light-pedestal"></div>
+
+    <!-- Phone Frame -->
+    <div class="phone-container">
+        <div class="phone-notch"></div>
+        
+        <!-- App Screen Content -->
+        <main class="app-screen">
+            <header>
+                <h1>MON CARNET DE BORD</h1>
+                <button class="profile-btn">Profil</button>
+            </header>
+
+            <div class="dashboard-grid">
+                
+                <!-- FINANCE -->
+                <a href="#" class="card finance">
+                    <div class="card-header">
+                        <div class="icon-wrapper">
+                            <!-- Euro symbol SVG -->
+                            <svg viewBox="0 0 24 24"><path d="M15 12.5a5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m3.5.5h-11m9.5 0h-1m.5-3.5h-1M11 2a9 9 0 0 0-9 9 9 9 0 0 0 9 9m1-20a9 9 0 0 1 9 9 9 9 0 0 1-9 9"/></svg>
+                        </div>
+                        <div class="card-title">FINANCE</div>
+                    </div>
+                    <div class="card-body">
+                        <div>TOTAL: <span class="highlight">21 350 €</span> 📈</div>
+                        <div>AVENIR: <span class="stat-highlight">+3.2% CE MOIS</span></div>
+                    </div>
+                    <div class="card-btn">MES COMPTES</div>
+                </a>
+
+                <!-- AGENDA -->
+                <a href="#" class="card agenda">
+                    <div class="card-header">
+                        <div class="icon-wrapper">
+                            <!-- Calendar SVG -->
+                            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </div>
+                        <div class="card-title">AGENDA</div>
+                    </div>
+                    <div class="card-body">
+                        <div>SORTIE: <span class="highlight">CONCERT DE LUNA</span></div>
+                        <div>TICKETS: <span class="highlight">2 À VENIR</span></div>
+                    </div>
+                    <div class="card-btn">MON AGENDA</div>
+                </a>
+
+                <!-- COLLECTION -->
+                <a href="#" class="card collection">
+                    <div class="card-header">
+                        <div class="icon-wrapper">
+                            <!-- Vinyl SVG -->
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 12m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z M12 12v.01"/></svg>
+                        </div>
+                        <div class="card-title">COLLECTION</div>
+                    </div>
+                    <div class="card-body">
+                        <div>TOTAL: <span class="highlight">142 VINYLS</span> 📀</div>
+                        <div>DERNIER: <span class="highlight">KIND OF BLUE</span></div>
+                    </div>
+                    <div class="card-btn">DISCOTHÈQUE</div>
+                </a>
+
+                <!-- EXPLORATION -->
+                <a href="#" class="card exploration">
+                    <div class="card-header">
+                        <div class="icon-wrapper">
+                            <!-- Airplane SVG -->
+                            <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </div>
+                        <div class="card-title">EXPLORATION</div>
+                    </div>
+                    <div class="card-body">
+                        <div>PROCHAIN: <span class="highlight">LONDRES</span> ✈️</div>
+                        <div>DESTINATIONS: <span class="highlight">15 EXPLORÉES</span></div>
+                    </div>
+                    <div class="card-btn">MES VOYAGES</div>
+                </a>
+
+            </div>
+        </main>
+        
+        <!-- FAB button -->
+        <button class="fab">+</button>
+    </div>
+
+    <script>
+        // PWA Service Worker Registration (for offline use)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+                                                                                                       </html>
+                                                                                                       
