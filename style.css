@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #071416;
+}
+
+.accueil {
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+    height: 100dvh;
+
+    margin: auto;
+
+    background-image: url("fond.png");
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   ZONES DE CLIC — TEST
+========================= */
+
+.zone-clic {
+    position: absolute;
+
+    display: block;
+
+    z-index: 10;
+
+    /* VISIBLES POUR LES TESTS */
+    background: rgba(255, 0, 0, .25);
+    border: 1px solid red;
+}
+
+
+/* MES VOYAGES — zone du haut */
+
+.zone-voyages {
+    left: 25%;
+    bottom: 95px;
+
+    width: 50%;
+    height: 50px;
+}
+
+
+/* AJOUTER — zone du bas */
+
+.zone-ajouter {
+    left: 25%;
+    bottom: 30px;
+
+    width: 50%;
+    height: 50px;
+}
