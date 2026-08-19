@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mes Voyages</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="accueil">
+
+        <!-- Zone de clic MES VOYAGES -->
+        <a href="mes-voyages.html"
+           class="zone-clic zone-voyages"
+           aria-label="Mes voyages">
+        </a>
+
+        <!-- Zone de clic AJOUTER -->
+        <a href="ajouter.html"
+           class="zone-clic zone-ajouter"
+           aria-label="Ajouter un voyage">
+        </a>
+
+    </main>
+
+</body>
+</html>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #071416;
+}
+
+.accueil {
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+    height: 100dvh;
+
+    margin: auto;
+
+    background-image: url("fond.png");
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   ZONES CLIQUABLES
+========================================= */
+
+.zone-clic {
+    position: absolute;
+
+    display: block;
+
+    z-index: 10;
+
+    /*
+       COULEUR DE TEST
+       À supprimer une fois le positionnement validé.
+    */
+    background: rgba(255, 0, 0, .25);
+
+    border: 1px solid red;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* MES VOYAGES */
+
+.zone-voyages {
+    left: 18%;
+    bottom: 28px;
+
+    width: 27%;
+    height: 55px;
+}
+
+
+/* AJOUTER */
+
+.zone-ajouter {
+    right: 18%;
+    bottom: 28px;
+
+    width: 27%;
+    height: 55px;
+}
