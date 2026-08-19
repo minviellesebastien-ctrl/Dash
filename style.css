@@ -229,3 +229,109 @@ body {
 .cadre-enregistrer:active {
     transform: scale(.97);
 }
+
+/* =========================
+   PAGE MES VOYAGES
+========================= */
+
+.page-voyages {
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+    height: 100dvh;
+
+    margin: auto;
+
+    background-image: url("fond3.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   RETOUR
+========================= */
+
+.retour-voyages {
+    position: absolute;
+
+    top: 25px;
+    left: 20px;
+
+    z-index: 20;
+
+    color: white;
+
+    font-size: 42px;
+    line-height: 1;
+
+    text-decoration: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================
+   GRANDE ZONE SCROLLABLE
+========================= */
+
+.liste-voyages {
+    position: absolute;
+
+    top: 150px;
+    left: 7%;
+
+    width: 86%;
+    height: calc(100dvh - 350px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: none;
+}
+
+.liste-voyages::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================
+   DEUX BOUTONS
+========================= */
+
+.actions-voyages {
+    position: absolute;
+
+    left: 7%;
+    bottom: 55px;
+
+    width: 86%;
+
+    display: flex;
+
+    gap: 12px;
+
+    z-index: 20;
+}
+
+.action-voyage {
+    flex: 1;
+
+    height: 55px;
+
+    border: 1px solid #19cbbb;
+    border-radius: 16px;
+
+    background: rgba(7, 20, 22, .85);
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
