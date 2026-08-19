@@ -14,6 +14,57 @@
 
     <main class="page-ajouter">
 
+        <!-- Zone retour -->
+        <a href="index.html" class="zone-retour zone-retour-ajouter"></a>
+
+        <div class="formulaire-voyage">
+
+            <!-- Pays -->
+            <input
+                type="text"
+                id="pays"
+                placeholder="Pays"
+                autocomplete="country"
+            >
+
+            <!-- Ville -->
+            <input
+                type="text"
+                id="ville"
+                placeholder="Ville"
+                autocomplete="address-level2"
+            >
+
+            <!-- Date -->
+            <input
+                type="date"
+                id="date"
+            >
+
+            <!-- Choisir une photo -->
+            <label class="cadre-photo">
+
+                <span>Choisir une photo</span>
+
+                <input
+                    type="file"
+                    id="photo"
+                    accept="image/*"
+                >
+
+            </label>
+
+            <!-- Enregistrer -->
+            <button
+                type="button"
+                id="enregistrer"
+                class="cadre-enregistrer"
+            >
+                Enregistrer le voyage
+            </button>
+
+        </div>
+
     </main>
 
 </body>
