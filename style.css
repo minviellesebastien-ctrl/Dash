@@ -84,3 +84,22 @@ body {
 
     overflow: hidden;
 }
+
+/* =========================
+   PAGE MES VOYAGES
+========================= */
+
+.page-voyages {
+    width: 100%;
+    max-width: 500px;
+    height: 100dvh;
+
+    margin: auto;
+
+    background-image: url("fond3.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
