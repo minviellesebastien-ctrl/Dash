@@ -444,3 +444,21 @@ a {
 
     object-fit: cover;
 }
+
+.cadre-photo {
+    position: relative;
+    overflow: hidden;
+}
+
+.cadre-photo .apercu-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 2;
+}
