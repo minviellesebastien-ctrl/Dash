@@ -68,7 +68,7 @@ a {
 
 .zone-voyages {
     left: 22%;
-    bottom: 117px;
+    bottom: 120px;
 
     width: 50%;
     height: 50px;
@@ -79,7 +79,7 @@ a {
 
 .zone-ajouter {
     left: 27%;
-    bottom: 35px;
+    bottom: 38px;
 
     width: 50%;
     height: 50px;
@@ -289,10 +289,10 @@ a {
     position: absolute;
 
     top: 150px;
-    left: 8%;
+    left: 10%;
 
     width: 86%;
-    height: calc(100dvh - 300px);
+    height: calc(100dvh - 250px);
 
     overflow-y: auto;
     overflow-x: hidden;
@@ -317,10 +317,10 @@ a {
 .actions-voyages {
     position: absolute;
 
-    left: 7%;
-    bottom: 35px;
+    left: 10%;
+    bottom: 28px;
 
-    width: 86%;
+    width: 80%;
 
     display: flex;
 
@@ -350,25 +350,30 @@ a {
 }
 
 /* =========================
-   RÉGLAGE INDIVIDUEL
+   POSITION INDIVIDUELLE
 ========================= */
 
-.champ-pays {
-    transform: translateY(15px);
+.formulaire-voyage > input:nth-of-type(1) {
+    position: relative;
+    top: 15px;
 }
 
-.champ-ville {
-    transform: translateY(5px);
+.formulaire-voyage > input:nth-of-type(2) {
+    position: relative;
+    top: 5px;
 }
 
-.champ-date {
-    transform: translateY(-10px);
+.formulaire-voyage > input:nth-of-type(3) {
+    position: relative;
+    top: -10px;
 }
 
 .cadre-photo {
-    transform: translateY(-100px);
+    position: relative;
+    top: 20px;
 }
 
 .cadre-enregistrer {
-    transform: translateY(-30px);
+    position: relative;
+    top: 20px;
 }
