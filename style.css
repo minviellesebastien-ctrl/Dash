@@ -392,6 +392,7 @@ a {
 
 .fond-carte-voyage {
     position: absolute;
+
     inset: 0;
 
     width: 100%;
@@ -399,7 +400,7 @@ a {
 
     display: block;
 
-    z-index: 3;
+    z-index: 1;
 
     pointer-events: none;
 }
@@ -411,19 +412,28 @@ a {
 .photo-carte-voyage {
     position: absolute;
 
-    left: 2.5%;
-    top: 8%;
+    left: 3%;
+    top: 10%;
 
     width: 47%;
-    height: 84%;
+    height: 80%;
 
-    padding: 5px;
+    padding: 6px;
 
     background: rgba(255, 255, 255, .45);
 
     overflow: hidden;
 
     z-index: 2;
+}
+
+.photo-carte-voyage img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
 }
 
 .photo-carte-voyage img {
