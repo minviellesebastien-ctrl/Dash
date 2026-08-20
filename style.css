@@ -161,8 +161,8 @@ a {
 ----------------------------------------------------- */
 
 .formulaire-voyage > input {
-    width: 95%;
-    height: 52px;
+    width: 80%;
+    height: 45px;
 
     padding: 0 16px;
 
@@ -199,8 +199,8 @@ a {
     align-items: center;
     justify-content: center;
 
-    width: 100%;
-    height: 170px;
+    width: 80%;
+    height: 150px;
 
     border: 1px solid red;
     border-radius: 18px;
@@ -317,14 +317,14 @@ a {
 .actions-voyages {
     position: absolute;
 
-    left: 10%;
-    bottom: 28px;
+    left: 12%;
+    bottom: 27px;
 
-    width: 80%;
+    width: 70%;
 
     display: flex;
 
-    gap: 12px;
+    gap: 14px;
 
     z-index: 20;
 }
@@ -375,5 +375,5 @@ a {
 
 .cadre-enregistrer {
     position: relative;
-    top: 20px;
+    top: -20px;
 }
