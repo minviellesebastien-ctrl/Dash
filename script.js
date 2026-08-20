@@ -312,7 +312,6 @@ if (prochainVoyage) {
     afficherProchainVoyage();
 }
 
-
 function afficherProchainVoyage() {
 
     const voyages = getVoyages();
@@ -321,38 +320,57 @@ function afficherProchainVoyage() {
         return;
     }
 
-    const maintenant = new Date();
+    const aujourdHui = new Date();
+
+    aujourdHui.setHours(0, 0, 0, 0);
 
     /*
-       On cherche le prochain voyage à venir.
+       On garde uniquement les voyages
+       dont la date est aujourd'hui ou dans le futur.
     */
 
-    const futurs = voyages
+    const voyagesAVenir = voyages
         .filter(voyage => {
-            return new Date(voyage.date + "T00:00:00") >= maintenant;
+
+            const dateVoyage =
+                new Date(voyage.date + "T00:00:00");
+
+            return dateVoyage >= aujourdHui;
         })
         .sort((a, b) => {
-            return new Date(a.date) - new Date(b.date);
+
+            return new Date(a.date + "T00:00:00")
+                 - new Date(b.date + "T00:00:00");
         });
 
+
     /*
-       S'il n'y a plus de voyage futur,
-       on prend le plus récent.
+       Le premier est donc le voyage actuel/prochain.
     */
 
-    let voyage;
+    if (voyagesAVenir.length === 0) {
 
-    if (futurs.length > 0) {
+        /*
+           Tous les voyages sont passés.
+           On affiche alors le plus récent.
+        */
 
-        voyage = futurs[0];
+        voyages.sort((a, b) => {
 
-    } else {
+            return new Date(b.date + "T00:00:00")
+                 - new Date(a.date + "T00:00:00");
+        });
 
-        voyage = [...voyages]
-            .sort((a, b) => {
-                return new Date(b.date) - new Date(a.date);
-            })[0];
+        afficherVoyageAccueil(voyages[0]);
+
+        return;
     }
+
+
+    afficherVoyageAccueil(voyagesAVenir[0]);
+}
+
+function afficherVoyageAccueil(voyage) {
 
     const photo =
         document.getElementById("photoProchainVoyage");
@@ -379,7 +397,6 @@ function afficherProchainVoyage() {
     /* Photo */
 
     photo.src = voyage.photo;
-
     photo.hidden = false;
 
 
@@ -401,4 +418,5 @@ function afficherProchainVoyage() {
         formaterDate(voyage.date);
 
     infos.hidden = false;
-    }
+}
+        
