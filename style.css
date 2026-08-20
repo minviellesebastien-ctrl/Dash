@@ -161,8 +161,8 @@ a {
 ----------------------------------------------------- */
 
 .formulaire-voyage > input {
-    width: 87%;
-    height: 45px;
+    width: 88%;
+    height: 42px;
 
     padding: 0 16px;
 
@@ -200,7 +200,7 @@ a {
     justify-content: center;
 
     width: 87%;
-    height: 150px;
+    height: 145px;
 
     border: 1px solid red;
     border-radius: 18px;
@@ -361,13 +361,13 @@ a {
 
 .formulaire-voyage > input:nth-of-type(2) {
     position: relative;
-    top: 5px;
+    top: 6px;
    left: 24px;
 }
 
 .formulaire-voyage > input:nth-of-type(3) {
     position: relative;
-    top: 38px;
+    top: 39px;
    left: 24px;
 }
 
