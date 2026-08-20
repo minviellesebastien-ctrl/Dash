@@ -354,21 +354,21 @@ a {
 ========================= */
 
 .champ-pays {
-    transform: translateY(20px);
+    transform: translateY(15px);
 }
 
 .champ-ville {
-    transform: translateY(20px);
+    transform: translateY(5px);
 }
 
 .champ-date {
-    transform: translateY(20px);
+    transform: translateY(-10px);
 }
 
 .cadre-photo {
-    transform: translateY(20px);
+    transform: translateY(-100px);
 }
 
 .cadre-enregistrer {
-    transform: translateY(20px);
+    transform: translateY(-30px);
 }
