@@ -348,3 +348,27 @@ a {
 
     -webkit-tap-highlight-color: transparent;
 }
+
+/* =========================
+   RÉGLAGE INDIVIDUEL
+========================= */
+
+.champ-pays {
+    transform: translateY(20px);
+}
+
+.champ-ville {
+    transform: translateY(20px);
+}
+
+.champ-date {
+    transform: translateY(20px);
+}
+
+.cadre-photo {
+    transform: translateY(20px);
+}
+
+.cadre-enregistrer {
+    transform: translateY(20px);
+}
