@@ -455,3 +455,20 @@ a {
 
     z-index: 2;
 }
+
+/* =====================================================
+   PHOTO VOYAGE - ACCUEIL
+===================================================== */
+
+.photo-voyage {
+    position: absolute;
+
+    width: 42%;
+    height: auto;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    z-index: 2;
+}
