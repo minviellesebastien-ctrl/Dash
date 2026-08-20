@@ -367,13 +367,13 @@ a {
 
 .formulaire-voyage > input:nth-of-type(3) {
     position: relative;
-    top: 28px;
+    top: 35px;
    left: 24px;
 }
 
 .cadre-photo {
     position: relative;
-    top: 58px;
+    top: 70px;
    left: 24px;
 }
 
