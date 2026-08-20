@@ -509,94 +509,90 @@ if (prochainVoyage) {
     afficherProchainVoyage();
 }
 
-
 function afficherProchainVoyage() {
 
-    const voyages =
-        getVoyages();
-
+    const voyages = getVoyages();
 
     if (voyages.length === 0) {
-
         return;
     }
 
+    const maintenant = new Date();
 
-    const aujourdHui =
-        new Date();
-
-    aujourdHui.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
+    const moisActuel = maintenant.getMonth();
+    const anneeActuelle = maintenant.getFullYear();
 
     /*
-       Voyages aujourd'hui ou futurs
+       1. On cherche d'abord un voyage
+       dans le mois actuel.
     */
 
-    const voyagesAVenir =
-        voyages
-            .filter(voyage => {
+    const voyagesDuMois = voyages
+        .filter(voyage => {
 
-                const dateVoyage =
-                    new Date(
-                        voyage.date +
-                        "T00:00:00"
-                    );
+            const dateVoyage =
+                new Date(voyage.date + "T00:00:00");
 
-                return dateVoyage >=
-                    aujourdHui;
-            })
-            .sort((a, b) => {
+            return (
+                dateVoyage.getMonth() === moisActuel &&
+                dateVoyage.getFullYear() === anneeActuelle
+            );
+        })
+        .sort((a, b) => {
 
-                return new Date(
-                    a.date + "T00:00:00"
-                ) -
-                new Date(
-                    b.date + "T00:00:00"
-                );
-            });
+            return new Date(a.date + "T00:00:00")
+                - new Date(b.date + "T00:00:00");
+        });
 
 
-    /*
-       S'il reste des voyages à venir,
-       le plus proche est affiché.
-    */
+    if (voyagesDuMois.length > 0) {
 
-    if (voyagesAVenir.length > 0) {
-
-        afficherVoyageAccueil(
-            voyagesAVenir[0]
-        );
+        afficherVoyageAccueil(voyagesDuMois[0]);
 
         return;
     }
 
 
     /*
-       Tous les voyages sont passés :
-       on affiche le plus récent.
+       2. Aucun voyage ce mois-ci :
+       on cherche le prochain voyage.
+    */
+
+    const voyagesFuturs = voyages
+        .filter(voyage => {
+
+            return new Date(
+                voyage.date + "T00:00:00"
+            ) > maintenant;
+        })
+        .sort((a, b) => {
+
+            return new Date(a.date + "T00:00:00")
+                - new Date(b.date + "T00:00:00");
+        });
+
+
+    if (voyagesFuturs.length > 0) {
+
+        afficherVoyageAccueil(voyagesFuturs[0]);
+
+        return;
+    }
+
+
+    /*
+       3. Plus aucun voyage futur :
+       on affiche le dernier voyage.
     */
 
     voyages.sort((a, b) => {
 
-        return new Date(
-            b.date + "T00:00:00"
-        ) -
-        new Date(
-            a.date + "T00:00:00"
-        );
+        return new Date(b.date + "T00:00:00")
+            - new Date(a.date + "T00:00:00");
     });
 
-
-    afficherVoyageAccueil(
-        voyages[0]
-    );
+    afficherVoyageAccueil(voyages[0]);
 }
-
 
 /* =====================================================
    AFFICHAGE VOYAGE ACCUEIL
