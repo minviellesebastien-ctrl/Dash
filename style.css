@@ -67,8 +67,8 @@ a {
 /* Mes voyages */
 
 .zone-voyages {
-    left: 25%;
-    bottom: 115px;
+    left: 22%;
+    bottom: 117px;
 
     width: 50%;
     height: 50px;
@@ -78,8 +78,8 @@ a {
 /* Ajouter */
 
 .zone-ajouter {
-    left: 25%;
-    bottom: 30px;
+    left: 27%;
+    bottom: 35px;
 
     width: 50%;
     height: 50px;
@@ -145,7 +145,7 @@ a {
     position: absolute;
 
     left: 10%;
-    top: 20%;
+    top: 25%;
 
     width: 80%;
 
@@ -289,10 +289,10 @@ a {
     position: absolute;
 
     top: 150px;
-    left: 7%;
+    left: 8%;
 
     width: 86%;
-    height: calc(100dvh - 350px);
+    height: calc(100dvh - 300px);
 
     overflow-y: auto;
     overflow-x: hidden;
@@ -318,7 +318,7 @@ a {
     position: absolute;
 
     left: 7%;
-    bottom: 55px;
+    bottom: 35px;
 
     width: 86%;
 
