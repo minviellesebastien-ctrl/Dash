@@ -317,7 +317,7 @@ a {
 .actions-voyages {
     position: absolute;
 
-    left: 12%;
+    left: 14%;
     bottom: 25px;
 
     width: 75%;
@@ -355,25 +355,25 @@ a {
 
 .formulaire-voyage > input:nth-of-type(1) {
     position: relative;
-    top: -30px;
+    top: -27px;
    left: 24px;
 }
 
 .formulaire-voyage > input:nth-of-type(2) {
     position: relative;
-    top: 5px;
+    top: 4px;
    left: 24px;
 }
 
 .formulaire-voyage > input:nth-of-type(3) {
     position: relative;
-    top: 25px;
+    top: 32px;
    left: 24px;
 }
 
 .cadre-photo {
     position: relative;
-    top: 50px;
+    top: 65px;
    left: 24px;
 }
 
