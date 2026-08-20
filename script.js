@@ -2,8 +2,7 @@
    MES VOYAGES
 ===================================================== */
 
-const STORAGE_KEY = "mes-voyages";
-
+const STORAGE_KEY = "voyages-v1-refonte";
 
 /* =====================================================
    OUTILS
