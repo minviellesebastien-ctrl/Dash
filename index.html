@@ -14,20 +14,83 @@
 
     <main class="accueil">
 
-        <!-- Zone haute : Mes voyages -->
-        <a href="mes-voyages.html"
-           class="zone-clic zone-voyages">
-        </a>
+        <!-- =========================================
+             VOYAGE ACTUEL / PROCHAIN
+        ========================================== -->
 
-        <!-- Zone basse : Ajouter -->
-        <a href="ajouter.html"
-           class="zone-clic zone-ajouter">
-        </a>
+        <section
+            id="prochainVoyage"
+            class="prochain-voyage"
+        >
+
+            <!-- Photo du voyage -->
+
+            <img
+                id="photoProchainVoyage"
+                class="photo-voyage"
+                src=""
+                alt=""
+                hidden
+            >
+
+
+            <!-- Pays / ville / date -->
+
+            <div
+                id="infosProchainVoyage"
+                class="infos-prochain-voyage"
+                hidden
+            >
+
+                <div class="info-voyage">
+
+                    <span id="infoPays"></span>
+
+                </div>
+
+
+                <div class="info-voyage">
+
+                    <span id="infoVille"></span>
+
+                </div>
+
+
+                <div class="info-voyage">
+
+                    <span id="infoDate"></span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             ZONE CLIC MES VOYAGES
+        ========================================== -->
+
+        <a
+            href="mes-voyages.html"
+            class="zone-clic zone-voyages"
+        ></a>
+
+
+        <!-- =========================================
+             ZONE CLIC AJOUTER
+        ========================================== -->
+
+        <a
+            href="ajouter.html"
+            class="zone-clic zone-ajouter"
+        ></a>
 
     </main>
 
-<script src="script.js"></script>
-    
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
