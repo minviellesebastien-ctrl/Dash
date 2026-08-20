@@ -361,19 +361,19 @@ a {
 
 .formulaire-voyage > input:nth-of-type(2) {
     position: relative;
-    top: 4px;
+    top: 5px;
    left: 24px;
 }
 
 .formulaire-voyage > input:nth-of-type(3) {
     position: relative;
-    top: 32px;
+    top: 28px;
    left: 24px;
 }
 
 .cadre-photo {
     position: relative;
-    top: 65px;
+    top: 58px;
    left: 24px;
 }
 
