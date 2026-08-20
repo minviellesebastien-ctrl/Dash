@@ -419,3 +419,34 @@ function afficherVoyageAccueil(voyage) {
     infos.hidden = false;
 }
         
+/* =====================================================
+   FORMAT DATE JJ/MM/AAAA
+===================================================== */
+
+const champDate = document.getElementById("date");
+
+if (champDate) {
+
+    champDate.addEventListener("input", () => {
+
+        let chiffres = champDate.value
+            .replace(/\D/g, "")
+            .slice(0, 8);
+
+        let valeur = "";
+
+        if (chiffres.length > 0) {
+            valeur += chiffres.slice(0, 2);
+        }
+
+        if (chiffres.length >= 3) {
+            valeur += "/" + chiffres.slice(2, 4);
+        }
+
+        if (chiffres.length >= 5) {
+            valeur += "/" + chiffres.slice(4, 8);
+        }
+
+        champDate.value = valeur;
+    });
+}
